@@ -3,7 +3,7 @@ const parser = new Parser();
 
 module.exports = async (req, res) => {
   try {
-    const feed = await parser.parseURL('https://g1.globo.com/rss/g1/');
+    const feed = await parser.parseURL('https://g1.globo.com/rss/ultimas/');
     const noticias = feed.items
       .filter(noticia => /tri\u00e2ngulo mineiro|uber\u00e2ndia|araguari|ituiutaba|patroc\u00ednio/i.test(noticia.title))
       .slice(0, 5)
