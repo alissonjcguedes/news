@@ -16,6 +16,6 @@ module.exports = async (req, res) => {
 };
 
 function extractImage(html) {
-  const match = html.match(/<img.*?src=\"(.*?)\"/);
+  const match = html.match(/<img.*?src="(.*?)"/);
   return match ? match[1] : 'https://via.placeholder.com/800x600';
 };
