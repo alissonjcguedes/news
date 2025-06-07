@@ -5,7 +5,11 @@ module.exports = async (req, res) => {
   try {
     const feed = await parser.parseURL('https://g1.globo.com/rss/ultimas/');
     const noticias = feed.items
-      .filter(noticia => /triângulo mineiro|uberlândia|araguari|ituiutaba|patrocínio/i.test(noticia.title || ''))
+      .filter(noticia => {
+        const title = noticia.title || '';
+        const normalized = title.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        return /triangulo mineiro|uberlandia|araguari|ituiutaba|patrocinio/.test(normalized);
+      })
       .slice(0, 5)
       .map(noticia => ({
         title: noticia.title,
