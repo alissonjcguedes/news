@@ -1,7 +1,7 @@
 const Parser = require('rss-parser');
 const parser = new Parser();
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   try {
     const feed = await parser.parseURL('https://g1.globo.com/rss/g1/');
     const noticias = feed.items.slice(0, 3).map(noticia => ({
