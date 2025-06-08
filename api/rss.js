@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
         title: noticia.title,
         image: extractImage(noticia['content:encoded'] || noticia.content || ''),
       }));
-
+    res.setHeader('Cache-Control', 'no-store');
     res.status(200).json(todas);
   } catch (error) {
     console.error('Erro ao buscar RSS:', error);
