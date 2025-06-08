@@ -55,7 +55,7 @@
   <script>
     async function fetchNews() {
       try {
-        const res = await fetch('/api/rss');
+        const res = await fetch('/api/rss?_t=' + new Date().getTime());
         const data = await res.json();
         if (!data || !data.length) throw new Error("Sem notícias recebidas");
         const noticia = data[0];
@@ -66,6 +66,7 @@
         document.getElementById('news-title').textContent = "Erro ao carregar notícias";
       }
     }
+
 
     fetchNews();
     setInterval(fetchNews, 60000); // atualiza o feed a cada 1 minuto
